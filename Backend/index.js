@@ -8,7 +8,19 @@ const app=express();
 const url='mongodb+srv://Sajahan-1:Sajahan123@sajahan-cluster.g6e3xnk.mongodb.net/Hotel?retryWrites=true&w=majority&appName=SAJAHAN-CLUSTER';
 port=5000;
 
-app.use(cors())
+app.use(cors());
+app.use(function (req,res,next){
+    res.header('Access-Control-Allow-Origin','*');
+    res.header(
+        'Access-Control-Allow-Methods',
+        'GET,HEAD,OPTIONS,POST,PUT,DELETE'
+    );
+    res.header(
+        'Access-Control-Allow-Headers',
+        'Origin,X-Requested-with, Content-Type,Accept,Authorization'
+    );
+    next();
+});
 app.use(express.json())
 
 mongoose.connect(url)
